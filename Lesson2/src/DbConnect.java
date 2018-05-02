@@ -76,7 +76,7 @@ public class DbConnect {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Tovar (prodid, title, cost) VALUES (?,?,?);");
             for (int i = 1; i <= 10000; i++) {
                 preparedStatement.setInt(1, i);
-                preparedStatement.setString(2, "Tovar" + i);
+                preparedStatement.setString(2, "товар" + i);
                 preparedStatement.setInt(3, i * 10);
                 preparedStatement.addBatch();
             }
@@ -88,4 +88,11 @@ public class DbConnect {
         }
     }
 
+    public Statement getStatement() throws SQLException {
+        return connection.createStatement();
+    }
+
+    public PreparedStatement getPreparedStatement(String sql) throws SQLException {
+        return connection.prepareStatement(sql);
+    }
 }
